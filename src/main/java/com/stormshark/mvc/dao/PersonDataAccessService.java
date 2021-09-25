@@ -20,6 +20,9 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
+        final UUID gid = UUID.randomUUID();
+        final String sql="INSERT INTO Person (id, name) VALUES (?, ?)";
+        jdbcTemplate.update(sql,new Object[]{id,person.getName()});
         return 0;
     }
 
@@ -35,16 +38,34 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public Optional<Person> selectPersonByID(UUID id) {
-        return Optional.empty();
+        final String sql= "SELECT * FROM PERSON WHERE id=  ? ";
+       Person person=  jdbcTemplate.queryForObject(
+               sql,
+               new Object[]{id},
+               (resultSet, i) -> {
+            UUID personId = UUID.fromString(resultSet.getString("id"));
+            String name = resultSet.getString("name");
+            return new Person(personId,name);
+        });
+        return  Optional.ofNullable(person);
     }
 
     @Override
     public void deletePersonById(UUID id) {
+        final String sql= "DELETE FROM PERSON WHERE id=  ?";
+        jdbcTemplate.update(sql, new Object[]{id});
 
     }
 
     @Override
     public int updatePersonById(UUID id, Person person) {
-        return 0;
+        final String sql= "SELECT COUNT(*) FROM PERSON WHERE id=  ? ";
+
+       int checkIDExistence = jdbcTemplate.queryForObject(sql,new Object[]{id},Integer.class);
+       if (checkIDExistence>0) {
+           final String sql2 = "UPDATE PERSON SET name=? WHERE id= ?  ";
+           jdbcTemplate.update(sql2,new Object[]{person.getName(),id});
+       }
+        return checkIDExistence;
     }
 }
