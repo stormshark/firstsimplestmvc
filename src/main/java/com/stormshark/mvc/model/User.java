@@ -3,9 +3,13 @@ package com.stormshark.mvc.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class User {
 
+
+
+    public UUID id;
     public String name;
     public String lastname;
     public String code;
@@ -14,7 +18,22 @@ public class User {
     public String password;
     public JsonProperty passwordHistory;
 
+    public User(UUID id, String name, String lastname, String code, String email, Date birthdate) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.code = code;
+        this.email = email;
+        this.birthdate = birthdate;
+    }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
     public String getPassword() {
         return password;
     }

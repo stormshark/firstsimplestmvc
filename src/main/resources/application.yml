@@ -4,3 +4,9 @@ app:
     username: postgres
     password: 123456
     pool-size: 30
+mysql:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/postgre_demo
+    username: postgres
+    password: 123456
+    pool-size: 30
