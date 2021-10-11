@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -51,7 +52,7 @@ public class UserDTOService implements UserDao {
     }
 
     @Override
-    public User getAUserById(UUID UserId) {
-        return null;
+    public User getAnUserById(UUID UserId) {
+        return new User(UUID.randomUUID(),"hardCode1","test","asd","email",Date.from(Instant.now()));
     }
 }

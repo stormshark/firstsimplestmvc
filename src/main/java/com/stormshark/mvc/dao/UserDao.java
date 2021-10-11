@@ -11,7 +11,7 @@ public interface UserDao {
     List<User> listAllUsers();
     User UpdateAUser (UUID UserId, User user);
     void deleteAUSer (UUID UserId);
-    User getAUserById (UUID UserId);
+    User getAnUserById (UUID UserId);
 
 
 }

@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("api/v1/person")
+@RequestMapping("api/v1/persons")
 @RestController
 public class PersonController {
 

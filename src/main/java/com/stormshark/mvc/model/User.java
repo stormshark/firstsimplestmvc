@@ -34,6 +34,7 @@ public class User {
     public void setId(UUID id) {
         this.id = id;
     }
+
     public String getPassword() {
         return password;
     }
@@ -49,7 +50,6 @@ public class User {
     public void setPasswordHistory(JsonProperty passwordHistory) {
         this.passwordHistory = passwordHistory;
     }
-
 
     public String getName() {
         return name;
@@ -87,14 +87,8 @@ public class User {
         this.birthdate = birthdate;
     }
 
-
     public String getLastname() {
         return lastname;
     }
-
-
-
-
-
 
 }
