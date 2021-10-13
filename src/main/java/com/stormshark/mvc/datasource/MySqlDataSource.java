@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 public class MySqlDataSource {
     @Bean
-    @ConfigurationProperties("app.datasource")
+    @ConfigurationProperties("mysql.datasource")
     public HikariDataSource hikariDataSource() {
         return DataSourceBuilder
                 .create()
