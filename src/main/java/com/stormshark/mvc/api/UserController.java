@@ -3,9 +3,10 @@ package com.stormshark.mvc.api;
 import com.stormshark.mvc.model.User;
 import com.stormshark.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User user (@RequestBody User user){
+    public User createAnUser (@Valid @NonNull @RequestBody User user ){
         return userService.createUser(user);
     }
 

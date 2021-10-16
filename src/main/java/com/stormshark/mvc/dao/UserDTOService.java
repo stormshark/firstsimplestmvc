@@ -21,19 +21,24 @@ public class UserDTOService implements UserDao {
 
     @Override
     public User createAUser(User user) {
-        final String mySqlCreate = "INSERT INTO USER (id,name,lastname,code,email,birthdate) VALUES (?,?,?,?,?)";
-         jdbcTemplate.update(mySqlCreate,
-                new Object[]{UUID.randomUUID(),user.getName(),user.getLastname(),user.getCode(),user.getEmail(),user.getBirthdate()});
+        final String mySqlCreate = "INSERT INTO USER_DEF (id,name,last_name,code,email,birthdate) VALUES (?,?,?,?,?,?)";
+        try {
+            jdbcTemplate.update(mySqlCreate,
+                    UUID.randomUUID(), user.getName(), user.getLastname(), user.getCode(), user.getEmail(), user.getBirthdate());
+        } catch (Exception e) {
+            System.out.println("could not insert into DB");
+        }
+
         return user;
     }
 
     @Override
     public List<User> listAllUsers() {
-        final String mySqlSelect = "SELECT id, name,lastname,code,email,birthdate FROM USER";
+        final String mySqlSelect = "SELECT id, name,last_name,code,email,birthdate FROM USER_DEF";
         return jdbcTemplate.query(mySqlSelect,(resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
-            String lastname = resultSet.getString("lastname");
+            String lastname = resultSet.getString("last_name");
             String code = resultSet.getString("code");
             String email = resultSet.getString("email");
             Date birthdate = resultSet.getDate("birthdate");
@@ -53,6 +58,6 @@ public class UserDTOService implements UserDao {
 
     @Override
     public User getAnUserById(UUID UserId) {
-        return new User(UUID.randomUUID(),"hardCode1", "othersource","asd","email",Date.from(Instant.now()));
+        return new User(UUID.randomUUID(),"hardCode1", "outliers","asd","email",Date.from(Instant.now()));
     }
 }

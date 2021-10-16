@@ -6,9 +6,6 @@ import java.util.Date;
 import java.util.UUID;
 
 public class User {
-
-
-
     public UUID id;
     public String name;
     public String lastname;
@@ -16,9 +13,14 @@ public class User {
     public String email;
     public Date birthdate;
     public String password;
-    public JsonProperty passwordHistory;
+    public String passwordHistory;
 
-    public User(UUID id, String name, String lastname, String code, String email, Date birthdate) {
+    public User(@JsonProperty UUID id,
+                @JsonProperty String name,
+                @JsonProperty String lastname,
+                @JsonProperty String code,
+                @JsonProperty String email,
+                @JsonProperty Date birthdate) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -43,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public JsonProperty getPasswordHistory() {
+    public String getPasswordHistory() {
         return passwordHistory;
     }
 
-    public void setPasswordHistory(JsonProperty passwordHistory) {
+    public void setPasswordHistory(String passwordHistory) {
         this.passwordHistory = passwordHistory;
     }
 
