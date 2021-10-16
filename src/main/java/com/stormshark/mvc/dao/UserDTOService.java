@@ -26,7 +26,7 @@ public class UserDTOService implements UserDao {
             jdbcTemplate.update(mySqlCreate,
                     UUID.randomUUID(), user.getName(), user.getLastname(), user.getCode(), user.getEmail(), user.getBirthdate());
         } catch (Exception e) {
-            System.out.println("could not insert into DB");
+            System.out.println("could not insert into DB.");
         }
 
         return user;
